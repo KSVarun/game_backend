@@ -45,7 +45,7 @@ public class GameController {
         return new ResponseEntity<String>("BAD_REQUEST",HttpStatus.BAD_REQUEST);
     }
 
-    @PostMapping("/new")
+    @PostMapping("/newGame")
     public ResponseEntity<?> addNewGame(@Valid @RequestBody Game game, BindingResult result){
         ResponseEntity<?> errorMap = validationErrorService.ValidationService(result);
         if(errorMap!=null) return errorMap;
@@ -57,7 +57,9 @@ public class GameController {
     return new ResponseEntity<String>("Game Deleted",HttpStatus.OK);}
 
     @PutMapping("{id}")
-    public void updateGame(@PathVariable Long id, @RequestBody Game game){gameService.updateGame(id, game);}
+    public ResponseEntity<?> updateGame(@PathVariable Long id, @RequestBody Game game){
+        return new ResponseEntity<Game>(gameService.updateGame(id, game),HttpStatus.OK);
+    }
 
 //    @DeleteMapping("/title/{title}")
 //    public void deleteAllGamesByTitle(@PathVariable String title){gameService.deleteAllGamesByTitle(title);}

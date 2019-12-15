@@ -28,4 +28,16 @@ public class ApiService {
         }
 
     }
+    public Api addNewApiKey(Api key) {
+        return apiRepository.save(key);
+    }
+
+    public void deleteApiKey(Long Id) {
+        try{
+            apiRepository.deleteById(Id);
+        }
+        catch (Exception e){
+            throw new ApiKeyException("API KEY DOES NOT EXIST");
+        }
+    }
 }

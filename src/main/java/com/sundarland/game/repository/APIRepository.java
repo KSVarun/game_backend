@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface APIRepository extends JpaRepository<Api,Long> {
     Api findByKey(String key);
+
+
 }

@@ -1,6 +1,7 @@
 package com.sundarland.game.services;
 
 import com.sundarland.game.bean.Game;
+import com.sundarland.game.exceptions.GameException;
 import com.sundarland.game.repository.GameRepository;
 import org.aspectj.weaver.IEclipseSourceContext;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,16 @@ public class GameService {
     }
 
     public void deleteGame(Long id) {
-         gameRepository.deleteById(id);
+
+        try{
+            gameRepository.deleteById(id);
+        }catch (Exception e){
+            throw new GameException("ID does not exists");
+        }
     }
 
-    public void updateGame(Long id, Game game) {
-        gameRepository.save(game);
+    public Game updateGame(Long id, Game game) {
+        return gameRepository.save(game);
     }
 
 //    public void deleteAllGamesByTitle(String title) {

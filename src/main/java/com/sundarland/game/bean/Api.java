@@ -9,16 +9,18 @@ public class Api {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank(message = "API key missing")
     private String key;
 
     public Api() {
     }
 
-    public Api(Long id, @NotBlank(message = "API key missing") String key) {
+    public Api(Long id, String key) {
         this.id = id;
         this.key = key;
     }
+
 
     public Long getId() {
         return id;
