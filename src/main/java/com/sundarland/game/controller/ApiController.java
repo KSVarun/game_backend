@@ -23,7 +23,7 @@ public class ApiController {
 
     @PostMapping("/newApiKey")
     public ResponseEntity<?> addNewApiKey(@Valid @RequestBody Api apiKey, BindingResult result){
-        
+
         ResponseEntity<?> errorMap = validationErrorService.ValidationService(result);
         if(errorMap!=null) return errorMap;
 
